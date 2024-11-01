@@ -1,7 +1,7 @@
 package appiumtest;
 
 import java.net.URL;
-
+import java.io.File;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.appium.java_client.AppiumDriver;
@@ -27,15 +27,19 @@ public class TestDemo {
 	public static void openCalculator() throws Exception {
 		
 		DesiredCapabilities cap = new DesiredCapabilities();
-		
-		cap.setCapability("deviceName", "Readmi Note 10S");
-		cap.setCapability("udid", "DYNRTGJNN7OFK7AI");
 		cap.setCapability("platformName", "Android");
+		cap.setCapability("deviceName", "Pixel 3");
+		cap.setCapability("udid", "emulator-5554");
 		cap.setCapability("platformVersion", "12.0.0");
-		cap.setCapability("appPackage", "pe.sura.afpintegraapp");
-		cap.setCapability("appActivity", "pe.sura.afpintegraapp.MainActivity");
-		
-		URL url = new URL("http://127.0.0.1:4723/wd/hub");
+		cap.setCapability("automationName", "UiAutomator2");
+//		cap.setCapability("appPackage", "pe.sura.afpintegraapp");
+//		cap.setCapability("appActivity", "pe.sura.afpintegraapp.MainActivity");
+
+		String appUrl = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main"
+				+ File.separator + "resources" + File.separator + "ApiDemos-debug.apk";
+		cap.setCapability("app", appUrl);
+
+		URL url = new URL("http://127.0.0.1:4723");
 		driver = new AppiumDriver<MobileElement>(url, cap);
 		
 		System.out.println("Application Started ......");
