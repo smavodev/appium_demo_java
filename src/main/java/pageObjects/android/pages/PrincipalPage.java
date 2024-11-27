@@ -7,13 +7,13 @@ import org.openqa.selenium.WebElement;
 public class PrincipalPage {
 
     // Localizadores para los campos y botones
-    @AndroidFindBy(id = "com.example.app:id/username")
+    @AndroidFindBy(id = "pe.sura.afpintegraapp:id/inpDocumentNumber")
     private WebElement usernameField;
 
-    @AndroidFindBy(id = "com.example.app:id/password")
+    @AndroidFindBy(id = "pe.sura.afpintegraapp/inpPassword")
     private WebElement passwordField;
 
-    @AndroidFindBy(id = "com.example.app:id/loginButton")
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='Ingresar']")
     private WebElement loginButton;
 
     // Métodos para interactuar con los elementos
@@ -32,6 +32,4 @@ public class PrincipalPage {
     public boolean isLoginButtonDisplayed() {
         return loginButton.isDisplayed();
     }
-
-
 }
