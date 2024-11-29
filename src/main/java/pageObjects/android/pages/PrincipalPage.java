@@ -1,35 +1,48 @@
 package pageObjects.android.pages;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class PrincipalPage {
 
-    // Localizadores para los campos y botones
-    @AndroidFindBy(id = "pe.sura.afpintegraapp:id/inpDocumentNumber")
-    private WebElement usernameField;
+    AndroidDriver driver;
 
-    @AndroidFindBy(id = "pe.sura.afpintegraapp/inpPassword")
-    private WebElement passwordField;
-
-    @AndroidFindBy(xpath = "//android.widget.Button[@text='Ingresar']")
-    private WebElement loginButton;
-
-    // Métodos para interactuar con los elementos
-    public void enterUsername(String username) {
-        usernameField.sendKeys(username);
+    public PrincipalPage(AndroidDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    public void enterPassword(String password) {
-        passwordField.sendKeys(password);
+//    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id=\"com.falabella.falabellaApp:id/tv_not_now\"]")
+//    public WebElement getNotNow_1;
+
+    // Métodos para interactuar con los elementos usando findElement
+    public WebElement getNotNow2(){
+        return driver.findElement(AppiumBy.xpath("//android.widget.Button[@resource-id=\"com.falabella.falabellaApp:id/tv_not_now\"]"));
     }
 
-    public void clickLogin() {
-        loginButton.click();
+    public WebElement CountrySelect(){
+        return driver.findElement(AppiumBy.xpath("//android.widget.ListView[@resource-id=\"com.falabella.falabellaApp:id/listViewCountryPicker\"]/android.widget.RelativeLayout[3]"));
     }
 
-    public boolean isLoginButtonDisplayed() {
-        return loginButton.isDisplayed();
+//    public void clickNotNow1() {
+//        getNotNow_1.click();
+//    }
+
+    public void clickNotNow2() {
+        getNotNow2().click();
     }
+
+    public void clickCountrySelect() {
+        CountrySelect().click();
+    }
+
 }
