@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeClass;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 
 public class BaseConfig {
 
@@ -34,6 +35,9 @@ public class BaseConfig {
 
         URL url = new URL("http://127.0.0.1:4723");
         driver = new AndroidDriver(url, cap);
+
+        // Configuracion de espera global implicita
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         System.out.println("Application Started ......");
 
