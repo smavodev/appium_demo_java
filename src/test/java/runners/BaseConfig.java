@@ -1,9 +1,13 @@
 package runners;
 
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.android.AndroidDriver;
 
 import io.appium.java_client.service.local.AppiumDriverLocalService;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -41,6 +45,12 @@ public class BaseConfig {
 
         System.out.println("Application Started ......");
 
+    }
+
+    public void longPressAcction(WebElement element){
+        ((JavascriptExecutor) driver).executeScript("mobile: longClickGesture", ImmutableMap.of(
+                "elementId", ((RemoteWebElement) element).getId(), "duration", 2000
+        ));
     }
 
     @AfterClass
