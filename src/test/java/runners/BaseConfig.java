@@ -1,10 +1,13 @@
 package runners;
 
 import com.google.common.collect.ImmutableMap;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 
 import io.appium.java_client.service.local.AppiumDriverLocalService;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebElement;
@@ -51,6 +54,88 @@ public class BaseConfig {
         ((JavascriptExecutor) driver).executeScript("mobile: longClickGesture", ImmutableMap.of(
                 "elementId", ((RemoteWebElement) element).getId(), "duration", 2000
         ));
+    }
+
+    // Método reutilizable para hacer scroll hasta un elemento y hacer clic en él
+    public static void scrollAndClick(WebDriver driver, String elementText) {
+        boolean canScrollMore = true;
+
+        // Desplazamiento hasta que el elemento se encuentre
+        while (canScrollMore) {
+            try {
+                // Verificar si el elemento está visible
+                WebElement element = driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"" + elementText + "\"))"));
+                if (element.isDisplayed()) {
+                    // Si el elemento está visible, hacer clic
+                    element.click();
+                    System.out.println("Elemento encontrado y clickeado: " + elementText);
+                    break;
+                }
+            } catch (Exception e) {
+                // Si no se encontró, realizar scroll hacia abajo
+                canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
+                        "left", 100, "top", 100, "width", 200, "height", 600,
+                        "direction", "down",
+                        "percent", 0.90
+                ));
+            }
+        }
+
+        // Si no se encontró el elemento después de realizar el scroll
+        if (!canScrollMore) {
+            System.out.println("No se encontró el elemento con el texto: " + elementText);
+        }
+    }
+
+    // Método reutilizable para hacer scroll hasta un elemento y hacer clic en él por id, xpath, text
+    public static void scrollAndClickAll(WebDriver driver, String locatorType, String locatorValue) {
+        boolean canScrollMore = true;
+
+        // Desplazamiento hasta que el elemento se encuentre
+        while (canScrollMore) {
+            try {
+                WebElement element = null;
+
+                // Usar el tipo de localizador adecuado
+                switch (locatorType.toLowerCase()) {
+                    case "text":
+                        element = driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"" + locatorValue + "\"))"));
+                        break;
+                    case "id":
+                        element = driver.findElement(AppiumBy.id(locatorValue));
+                        break;
+//                    case "accessid":
+//                        element = driver.findElement(AppiumBy.accessibilityId(locatorValue));
+//                        break;
+                    case "xpath":
+                        element = driver.findElement(AppiumBy.xpath(locatorValue));
+                        break;
+                    // Agregar más casos según sea necesario
+                    default:
+                        System.out.println("Tipo de localizador no soportado.");
+                        return;
+                }
+
+                // Si el elemento está visible, hacer clic y salir del bucle
+                if (element.isDisplayed()) {
+                    element.click();
+                    System.out.println("Elemento encontrado y clickeado: " + locatorValue);
+                    break;
+                }
+            } catch (Exception e) {
+                // Si no se encontró el elemento, realizar scroll hacia abajo
+                canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
+                        "left", 100, "top", 100, "width", 200, "height", 1200,
+                        "direction", "down",
+                        "percent", 1.0
+                ));
+            }
+        }
+
+        // Si no se encontró el elemento después de realizar el scroll
+        if (!canScrollMore) {
+            System.out.println("No se encontró el elemento con el localizador: " + locatorValue);
+        }
     }
 
     @AfterClass
