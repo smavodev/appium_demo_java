@@ -138,6 +138,14 @@ public class BaseConfig {
         }
     }
 
+    public void swipeAction(WebElement element, String direction) {
+        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
+                "elementId", ((RemoteWebElement) element).getId(),
+                "direction", direction,
+                "percent", 0.75, "speed", 2000
+        ));
+    }
+
     @AfterClass
     public void TearDown() {
         if (driver != null) {
