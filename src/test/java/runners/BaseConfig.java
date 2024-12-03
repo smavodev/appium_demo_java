@@ -146,6 +146,15 @@ public class BaseConfig {
         ));
     }
 
+    public void dragAndDrop(WebElement element, Number direction_x, Number direction_y) {
+        ((JavascriptExecutor) driver).executeScript("mobile: dragGesture", ImmutableMap.of(
+                "elementId", ((RemoteWebElement) element).getId(),
+                "endX", direction_x,
+                "endY", direction_y,
+                "speed", 1000
+        ));
+    }
+
     @AfterClass
     public void TearDown() {
         if (driver != null) {
