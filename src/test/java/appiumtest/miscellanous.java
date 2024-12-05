@@ -28,8 +28,20 @@ public class miscellanous extends BaseConfig {
 
         driver.setClipboardText("Smavodev wifi");
         driver.findElement(AppiumBy.id("android:id/edit")).sendKeys(driver.getClipboardText());
-        //driver.pressKey(new KeyEvent(AndroidKey.ENTER));
-        driver.hideKeyboard(); // ocultar teclado
+        driver.pressKey(new KeyEvent(AndroidKey.ENTER));
+
+        Thread.sleep(3000);
+
+        // Verificar si el teclado está visible antes de ocultarlo
+//        if (driver.isKeyboardShown()) {
+//            driver.hideKeyboard();  // Ocultar teclado solo si está visible
+//            System.out.println("Teclado ocultado.");
+//        } else {
+//            System.out.println("El teclado ya estaba oculto.");
+//        }
+
+        // driver.hideKeyboard(); Si el emulador o dispositivo fisico muestra el teclado
+
         driver.findElement(AppiumBy.id("android:id/button1")).click();
         Thread.sleep(2000);
         driver.pressKey(new KeyEvent(AndroidKey.BACK));

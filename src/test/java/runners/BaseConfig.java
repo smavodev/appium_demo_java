@@ -30,12 +30,12 @@ public class BaseConfig {
         cap.setCapability("automationName", "UiAutomator2");
         cap.setCapability("platformName", "Android");
         cap.setCapability("platformVersion", "12");
-        cap.setCapability("deviceName", "Xiaomi M2101K6G"); // Pixel 8 API 33
-        cap.setCapability("udid", "3390e60e"); // emulator-5554
-//        cap.setCapability("deviceName", "Pixel 8 API 33");
-//        cap.setCapability("udid", "emulator-5554");
-//        cap.setCapability("avd", "Pixel_8");  // Inicia el simulador android de manera automatica
-//        cap.setCapability("avdLaunchTimeout", 180000); // Tiempo de espera de lanzamiento del simulador en automatico
+//        cap.setCapability("deviceName", "Xiaomi M2101K6G"); // Pixel 8 API 33
+//        cap.setCapability("udid", "3390e60e"); // emulator-5554
+        cap.setCapability("deviceName", "Pixel 8 API 33");
+        cap.setCapability("udid", "emulator-5554");
+        cap.setCapability("avd", "Pixel_8");  // Inicia el simulador android de manera automatica
+        cap.setCapability("avdLaunchTimeout", 180000); // Tiempo de espera de lanzamiento del simulador en automatico
         String appUrl = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main"
                 + File.separator + "resources" + File.separator + "ApiDemos-debug.apk";
         cap.setCapability("app", appUrl);
