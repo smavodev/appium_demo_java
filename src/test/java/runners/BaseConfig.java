@@ -157,6 +157,11 @@ public class BaseConfig {
         ));
     }
 
+    public Double getFormatAmount(String amount){
+        Double price =  Double.parseDouble(amount.substring(1));
+        return price;
+    }
+
     @AfterClass
     public void TearDown() {
         if (driver != null) {

@@ -93,12 +93,17 @@ public class Demo extends BaseConfig {
         double totalsum = 0;
         for (int i = 0; i < count; i++) {
             String amountPrices = productPrices.get(i).getText();
-            Double price =  Double.parseDouble(amountPrices.substring(1));
+            // Double price =  Double.parseDouble(amountPrices.substring(1));
+            Double price = getFormatAmount(amountPrices);
             totalsum = totalsum + price;
             // System.out.println("Price :" +  price);
-            System.out.printf("Suma de %d: %.2f%n", i+1, totalsum);
+            System.out.printf("Suma de %d: %.2f%n", i, price);
         }
         System.out.println("Total Sum: " + totalsum);
+
+        String displaySum = driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/totalAmountLbl")).getText();
+        Double displayFortmattedSum = getFormatAmount(displaySum);
+        Assert.assertEquals(totalsum, displayFortmattedSum);
 
         Thread.sleep(3000);
 
