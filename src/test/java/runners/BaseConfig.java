@@ -5,7 +5,6 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 
 import io.appium.java_client.service.local.AppiumDriverLocalService;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,7 +36,7 @@ public class BaseConfig {
         cap.setCapability("avd", "Pixel_8");  // Inicia el simulador android de manera automatica
         cap.setCapability("avdLaunchTimeout", 180000); // Tiempo de espera de lanzamiento del simulador en automatico
         String appUrl = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main"
-                + File.separator + "resources" + File.separator + "ApiDemos-debug.apk";
+                + File.separator + "resources" + File.separator + "General-Store.apk";
         cap.setCapability("app", appUrl);
         // cap.setCapability("appPackage", "pe.sura.afpintegraapp");
         // cap.setCapability("appActivity", "pe.sura.afpintegraapp.MainActivity");
@@ -59,7 +58,7 @@ public class BaseConfig {
     }
 
     // Método reutilizable para hacer scroll hasta un elemento y hacer clic en él
-    public static void scrollAndClick(WebDriver driver, String elementText) {
+    public static String scrollAndClick(WebDriver driver, String elementText) {
         boolean canScrollMore = true;
 
         // Desplazamiento hasta que el elemento se encuentre
@@ -87,6 +86,7 @@ public class BaseConfig {
         if (!canScrollMore) {
             System.out.println("No se encontró el elemento con el texto: " + elementText);
         }
+        return elementText;
     }
 
     // Método reutilizable para hacer scroll hasta un elemento y hacer clic en él por id, xpath, text
