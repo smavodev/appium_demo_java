@@ -20,4 +20,17 @@ public class Principal extends BaseConfig {
 
         Thread.sleep(3000);
     }
+
+    @Test
+    public void errorMessageValid() {
+        driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/spinnerCountry")).click();
+        String country = scrollAndClick(driver,"Argentina");
+        Assert.assertEquals(country, "Argentina");
+
+        // driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/nameField")).sendKeys("Elena");
+        driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/radioFemale")).click();
+        driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/btnLetsShop")).click();
+        String toastMessage = driver.findElement(AppiumBy.xpath("(//android.widget.Toast)[1]")).getAttribute("name");
+        Assert.assertEquals(toastMessage, "Please enter your name");
+    }
 }
