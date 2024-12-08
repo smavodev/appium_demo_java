@@ -65,3 +65,10 @@ adb devices -l
   "appium:app": "C:\\Users\\Smavodev\\Desktop\\Proyectos_Testing\\Appium2_java_maven\\src\\main\\resources\\ApiDemos-debug.apk"
 }
 ```
+
+### Descarga de driver
+| Navegador | Sitio Web                                                         |
+|-----------|-------------------------------------------------------------------|
+| Link 1:   | https://sites.google.com/chromium.org/driver/downloads?authuser=0 | 
+| Link 2:   | https://googlechromelabs.github.io/chrome-for-testing/            |
+
