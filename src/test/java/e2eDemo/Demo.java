@@ -82,6 +82,7 @@ public class Demo extends BaseConfig {
         driver.findElements(AppiumBy.xpath("//android.widget.TextView[@text='ADD TO CART']")).get(0).click();
         driver.findElements(AppiumBy.xpath("//android.widget.TextView[@text='ADD TO CART']")).get(0).click();
         driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/appbar_btn_cart")).click();
+        Thread.sleep(1000);
 
         // Validación de sumatoria de precios de página Cart
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -104,6 +105,12 @@ public class Demo extends BaseConfig {
         String displaySum = driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/totalAmountLbl")).getText();
         Double displayFortmattedSum = getFormatAmount(displaySum);
         Assert.assertEquals(totalsum, displayFortmattedSum);
+
+        WebElement element = driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/termsButton"));
+        longPressAcction(element);
+        driver.findElement(AppiumBy.id("android:id/button1")).click();
+        driver.findElement(AppiumBy.className("android.widget.CheckBox")).click();
+        driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/btnProceed")).click();
 
         Thread.sleep(3000);
 
