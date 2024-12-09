@@ -32,15 +32,15 @@ public class BaseConfig {
         cap.setCapability("platformVersion", "12");
 //        cap.setCapability("deviceName", "Xiaomi M2101K6G"); // Pixel 8 API 33
 //        cap.setCapability("udid", "3390e60e"); // emulator-5554
-         cap.setCapability("deviceName", "Pixel 8 API 33");
-         cap.setCapability("udid", "emulator-5554");
-         cap.setCapability("avd", "Pixel_8");  // Inicia el simulador android de manera automatica
-         cap.setCapability("avdLaunchTimeout", 180000); // Tiempo de espera de lanzamiento del simulador en automatico
+        cap.setCapability("deviceName", "Pixel 8 API 33");
+        cap.setCapability("udid", "emulator-5554");
+        cap.setCapability("avd", "Pixel_8");  // Inicia el simulador android de manera automatica
+        cap.setCapability("avdLaunchTimeout", 180000); // Tiempo de espera de lanzamiento del simulador en automatico
         String appUrl = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main"
                 + File.separator + "resources" + File.separator + "General-Store.apk";
         cap.setCapability("app", appUrl);
-        // cap.setCapability("appPackage", "pe.sura.afpintegraapp");
-        // cap.setCapability("appActivity", "pe.sura.afpintegraapp.MainActivity");
+//        cap.setCapability("appPackage", "com.androidsample.generalstore");
+//        cap.setCapability("appActivity", "com.androidsample.generalstore.MainActivity");
 
         URL url = new URL("http://127.0.0.1:4723");
         driver = new AndroidDriver(url, cap);
@@ -158,8 +158,8 @@ public class BaseConfig {
         ));
     }
 
-    public Double getFormatAmount(String amount){
-        Double price =  Double.parseDouble(amount.substring(1));
+    public Double getFormatAmount(String amount) {
+        Double price = Double.parseDouble(amount.substring(1));
         return price;
     }
 
