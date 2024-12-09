@@ -1,6 +1,7 @@
 package pageObjects.android.pages;
 
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
@@ -13,15 +14,15 @@ public class PrincipalPage {
 
     public PrincipalPage(AndroidDriver driver) {
         this.driver = driver;
-//        PageFactory.initElements(driver, this);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-//    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id=\"com.falabella.falabellaApp:id/tv_not_now\"]")
-//    public WebElement getNotNow_1;
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id=\"com.falabella.falabellaApp:id/tv_not_now\"]")
+    public WebElement getNotNow_1;
 
     // Métodos para interactuar con los elementos usando findElement
     public WebElement getNotNow2() {
-//        return driver.findElement(AppiumBy.xpath("//android.widget.Button[@resource-id=\"com.falabella.falabellaApp:id/tv_not_now\"]"));
+        // return driver.findElement(AppiumBy.xpath("//android.widget.Button[@resource-id=\"com.falabella.falabellaApp:id/tv_not_now\"]"));
         return driver.findElement(AppiumBy.id("com.falabella.falabellaApp:id/tv_not_now"));
     }
 
@@ -31,9 +32,9 @@ public class PrincipalPage {
         return driver.findElement(AppiumBy.xpath("//android.widget.RelativeLayout[" + index + "]"));
     }
 
-//    public void clickNotNow1() {
-//        getNotNow_1.click();
-//    }
+    public void clickNotNow1() {
+        getNotNow_1.click();
+    }
 
     public void clickNotNow2() {
         getNotNow2().click();
@@ -44,7 +45,8 @@ public class PrincipalPage {
      * 1 = Chile,
      * 2 = Colombia,
      * 3 = Peru
-     * @see CountrySelect(int index)
+     *
+     * @param index int
      */
     public void clickCountrySelect(int index) {
         CountrySelect(index).click();
