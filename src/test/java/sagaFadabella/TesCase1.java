@@ -1,4 +1,4 @@
-package appiumtest;
+package sagaFadabella;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -6,7 +6,7 @@ import pageObjects.android.pages.PrincipalPage;
 import pageObjects.android.pages.SearchPage;
 import runners.Runner;
 
-public class Ejecution {
+public class TesCase1 {
 
     public static void main(String[] args) throws Exception {
         try {
@@ -14,12 +14,7 @@ public class Ejecution {
 
             PrincipalPage principalPage = new PrincipalPage((AndroidDriver) driver);
             SearchPage searchPage = new SearchPage((AndroidDriver) driver);
-
             Thread.sleep(5000);
-//            if (principalPage.getNotNow_1.isDisplayed()) {
-//                principalPage.clickNotNow1();
-//            }
-
             if (principalPage.getNotNow2().isDisplayed()) {
                 principalPage.clickNotNow2();
                 principalPage.clickCountrySelect(3);
