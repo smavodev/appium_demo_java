@@ -12,7 +12,7 @@ public class TestCase1 extends BaseConfig {
 
         formPage.setCountrySelector("Argentina");
         formPage.setNameField("Yadira");
-        formPage.setGender("male");
+        formPage.setGenderFemale();
         formPage.setBntLetsShop();
 
         Thread.sleep(1000);

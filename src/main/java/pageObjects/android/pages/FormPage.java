@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import pageObjects.android.utils.Utils;
 
+import java.util.Objects;
+
 public class FormPage extends Utils {
 
     AndroidDriver driver;
@@ -16,15 +18,15 @@ public class FormPage extends Utils {
         PageFactory.initElements(driver, this);
     }
 
-
     @AndroidFindBy(id = "com.androidsample.generalstore:id/nameField")
     public WebElement nameField;
 
-    @AndroidFindBy(id = "com.androidsample.generalstore:id/radioFemale")
-    public WebElement femaleOption;
+//    @AndroidFindBy(id = "com.androidsample.generalstore:id/radioFemale")
+////    @AndroidFindBy(xpath = "//android.widget.RadioButton[@text='Female']")
+//    public WebElement femaleOption;
 
-    @AndroidFindBy(id = "com.androidsample.generalstore:id/radioMale")
-    public WebElement maleOption;
+//    @AndroidFindBy(id = "com.androidsample.generalstore:id/radioMale")
+//    public WebElement maleOption;
 
     public void setCountrySelector(String country) {
         driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/spinnerCountry")).click();
@@ -35,13 +37,11 @@ public class FormPage extends Utils {
         nameField.sendKeys(name);
     }
 
-    public void setGender(String gender) {
-        if (gender.equalsIgnoreCase("female") && maleOption.isSelected()) {
-            femaleOption.click();
-        }
+    public void setGenderFemale() {
+        driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/radioFemale")).click();
     }
 
-    public void setBntLetsShop(){
+    public void setBntLetsShop() {
         driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/btnLetsShop")).click();
     }
 
