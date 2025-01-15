@@ -2,3 +2,5 @@
 target/
 .idea/
 .settings/
+src/test/resources/app
+.DS_Store
