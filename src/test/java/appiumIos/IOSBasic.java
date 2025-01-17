@@ -1,7 +1,12 @@
 package appiumIos;
 
 import io.appium.java_client.AppiumBy;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.annotations.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class IOSBasic extends  BaseConfig{
 
@@ -14,6 +19,19 @@ public class IOSBasic extends  BaseConfig{
 
         driver.findElement(AppiumBy.iOSNsPredicateString("name == \"Confirm / Cancel\"")).click();
         driver.findElement(AppiumBy.iOSNsPredicateString("name == \"Confirm\"")).click();
+    }
+
+    @Test
+    public void IOSLongerPress(){
+        driver.findElement(AppiumBy.accessibilityId("Steppers")).click();
+        WebElement ele = driver.findElement(AppiumBy.xpath("(//XCUIElementTypeButton[@name=\"Increment\"])[3]"));
+
+        Map<String,Object> params = new HashMap<>();
+        params.put("element", ((RemoteWebElement)ele).getId());
+        params.put("duration", 5);
+        driver.executeScript("mobile:touchAndHold", params);
+
+
     }
 
 }
